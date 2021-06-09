@@ -27,8 +27,8 @@ where
 {
     pub fn new(tx: TX, rx: RX) -> Self {
         Self {
-            tx: tx,
-            rx: rx,
+            tx,
+            rx,
             received: [0u8; 32],
             cmd_buffer: String::new(),
             expected_buffer: String::new(),
@@ -89,6 +89,17 @@ where
             Command::Sleep => ("AT+SLEEP", "OK+SLEEP"),
             Command::Notify(val) => {
                 write!(self.cmd_buffer, "AT+NOTI{}", val as u8).unwrap();
+                write!(self.expected_buffer, "OK+Set:{}", val as u8).unwrap();
+                (self.cmd_buffer.as_str(), self.expected_buffer.as_str())
+            }
+            Command::Clear => ("AT+CLEAR", "OK+CLEAR"),
+            Command::Role(role) => {
+                write!(self.cmd_buffer, "AT+ROLE{}", role as u8).unwrap();
+                write!(self.expected_buffer, "OK+Set:{}", role as u8).unwrap();
+                (self.cmd_buffer.as_str(), self.expected_buffer.as_str())
+            }
+            Command::Save(val) => {
+                write!(self.cmd_buffer, "AT+SAVE{}", val as u8).unwrap();
                 write!(self.expected_buffer, "OK+Set:{}", val as u8).unwrap();
                 (self.cmd_buffer.as_str(), self.expected_buffer.as_str())
             }

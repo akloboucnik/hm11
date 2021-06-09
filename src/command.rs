@@ -1,4 +1,3 @@
-
 //! AT Commands
 
 pub enum Command<'a> {
@@ -28,12 +27,18 @@ pub enum Command<'a> {
     Reset,
     /// Discovery name
     SetName(&'a str),
-    /// System LED function 
+    /// System LED function
     /// false: when disconnected alternates output
-    /// true: when disconncted output is low 
+    /// true: when disconncted output is low
     SystemLedMode(bool),
     /// Sleep the module
     Sleep,
     /// Notification information over the uart
-    Notify(bool)
+    Notify(bool),
+    /// Clear Last Connected device address
+    Clear,
+    /// Set Master and Slave Role
+    Role(bool),
+    /// Set Module save connected address parameter
+    Save(bool),
 }
