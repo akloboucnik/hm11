@@ -9,7 +9,6 @@ use crate::command::Command;
 use core::fmt::Write;
 use embedded_hal::blocking::delay::DelayMs;
 use embedded_hal::serial;
-use heapless::consts::*;
 use heapless::String;
 use nb::block;
 
@@ -17,8 +16,8 @@ pub struct Hm11<TX, RX> {
     tx: TX,
     rx: RX,
     received: [u8; 32], // TODO find out max return length from hm11
-    cmd_buffer: String<U32>,
-    expected_buffer: String<U32>,
+    cmd_buffer: String<32>,
+    expected_buffer: String<32>,
 }
 
 impl<TX, RX> Hm11<TX, RX>

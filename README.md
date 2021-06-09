@@ -8,7 +8,7 @@
 
 ## About
 
-    - Minimum rustc version 1.31
+    - Minimum rustc version 1.51
 
 ## License
 
