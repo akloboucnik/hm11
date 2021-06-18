@@ -103,6 +103,7 @@ where
                 write!(self.expected_buffer, "OK+Set:{}", val as u8).unwrap();
                 (self.cmd_buffer.as_str(), self.expected_buffer.as_str())
             }
+            Command::Renew => ("AT+RENEW", "OK+RENEW"),
         };
 
         for byte in command.as_bytes() {

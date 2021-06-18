@@ -41,4 +41,6 @@ pub enum Command<'a> {
     Role(bool),
     /// Set Module save connected address parameter
     Save(bool),
+    /// Reset to factory settings
+    Renew,
 }
